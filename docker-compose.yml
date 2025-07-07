@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    container_name: los-tralaleros-api
+    depends_on:
+      - db # db starts firts
+    ports:
+      - "60000:60000"  # API port
+    env_file:
+      - ./.env  # API env variables
+    volumes:
+      - ./api:/app/api  # mounts local files (useful for development)
+    command: ["npm", "run", "dev"]
+  
+  db:
+    image: postgres:15
+    container_name: postgres-container
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
