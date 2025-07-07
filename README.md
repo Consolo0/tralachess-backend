@@ -10,48 +10,6 @@
 
 Este proyecto utiliza **PostgreSQL** como motor de base de datos y **Sequelize** como ORM. Para ejecutar el backend correctamente, debes tener una base de datos configurada y un archivo `.env` con las variables necesarias.
 
----
-
-### 🐘 Creación de Usuario y Base de Datos en PostgreSQL
-
-Si estás trabajando localmente (sin Docker), puedes configurar la base de datos ejecutando los siguientes comandos en `psql`:
-
-```sql
--- Crear usuario
-CREATE USER tralalero WITH PASSWORD 'tralapass';
-
--- Crear base de datos
-CREATE DATABASE traladb OWNER tralalero;
-
--- Otorgar privilegios
-GRANT ALL PRIVILEGES ON DATABASE traladb TO tralalero;
-
-```
-
----
-
-### ⚙️ Archivo `.env` de ejemplo
-
-Crea un archivo `.env` en la raíz del backend con el siguiente contenido:
-
-```env
-# PostgreSQL
-POSTGRES_USER=tralalero
-POSTGRES_PASSWORD=tralapass
-POSTGRES_DB=traladb
-DB_PORT=5432
-DB_HOST=db
-
-# Auth0
-AUTH0_DOMAIN=dev-yfcmuz3447miezig.us.auth0.com
-AUTH0_AUDIENCE=https://chess-backend.tralaleros.com
-```
-
-> 📌 Este archivo `.env` es **esencial** para levantar correctamente el backend.  
-> Sequelize utiliza estas variables de entorno para establecer la conexión con la base de datos.
-
----
-
 ## 🐳 Migraciones con Docker
 
 Como el proyecto utiliza `docker-compose`, las migraciones deben ejecutarse dentro del contenedor del backend.
